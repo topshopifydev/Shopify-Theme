@@ -1,0 +1,69 @@
+<style>
+    .dropdown {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 50px 0;
+    }
+    .dropdown select {
+        min-width: 100px;
+        padding: 10px;
+    }
+</style>
+
+<div class="dropdown page-width">
+    {%- assign metaVals = shop.metaobjects.first_meta_object.values -%}
+    <select class="dropdown-item">
+        {% for meta in metaVals %}
+            <option value="{{ meta.name.value }}" data-material="{{ meta.name.value }},{{ meta.size.value }},{{ meta.color.value }}" data-product="{{ meta.product.value.handle }}">{{ meta.name.value }}</option>
+        {% endfor %}
+    </select>
+    <select class="dropdown-item">
+        {% for meta in metaVals %}
+            <option value="{{ meta.size.value }}" data-material="{{ meta.name.value }},{{ meta.size.value }},{{ meta.color.value }}" data-product="{{ meta.product.value.handle }}">{{ meta.size.value }}</option>
+        {% endfor %}
+    </select>
+    <select class="dropdown-item">
+        {% for meta in metaVals %}
+            <option value="{{ meta.color.value }}" data-material="{{ meta.name.value }},{{ meta.size.value }},{{ meta.color.value }}" data-product="{{ meta.product.value.handle }}">{{ meta.color.value }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<script id="metaObjectJson">
+    {{ shop.metaobjects.first_meta_object.values | json }}
+</script>
+
+<script>
+    let selectedVals = [];
+    const selectItems = document.querySelectorAll('.dropdown-item');
+    const handleChange = (select, index) => (e) => {
+        const $this = e.target;
+        selectedVals[index] = select.value || '';
+        const combinedValues = selectedVals.join(',');
+        const metaObjectJson = JSON.parse(document.getElementById('metaObjectJson').innerHTML);
+        metaObjectJson.forEach(object => {
+            const objectVal = [object.name, object.size, object.color].join(',');
+            const productId = object.product.split('/').pop();
+            $this.querySelectorAll('option').forEach(option => {
+                if (option.dataset.material === objectVal) {
+                    fetchProd(option.dataset.product, objectVal, combinedValues);
+                }
+            });
+        });
+    };
+    selectItems.forEach((select, index) => {
+        select.addEventListener('change', handleChange(select, index));
+    });
+    const fetchProd = (handle, metaValues, selectedVals) => {
+        if(metaValues === selectedVals) {
+            let url = `https://mujtba-ali.myshopify.com/products/${handle}.js`
+            fetch(url)
+            .then(response => response.json())
+            .then(product => {
+                console.log('The title of this product is ' + product.title)
+            });
+            console.log(url,handle);
+        }
+    };
+</script>
