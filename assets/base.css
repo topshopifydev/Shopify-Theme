@@ -98,9 +98,6 @@ html.no-js .no-js-hidden {
   margin: 0 auto;
   padding: 0 1.5rem;
 }
-.section-header {
-  background-color: brown;
-}
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   max-width: 100%;
 }
@@ -2379,6 +2376,7 @@ product-info .loading__spinner:not(.hidden) ~ *,
   display: block;
   position: relative;
   background-color: rgb(var(--color-background));
+  background-color: brown;
 }
 
 .header-wrapper--border-bottom {
