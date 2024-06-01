@@ -99,7 +99,7 @@ html.no-js .no-js-hidden {
   padding: 0 1.5rem;
 }
 .section-header {
-  background-color: aquamarine;
+  background-color: brown;
 }
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   max-width: 100%;
