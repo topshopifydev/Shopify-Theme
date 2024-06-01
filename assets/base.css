@@ -3,7 +3,7 @@
   --alpha-button-border: 1;
   --alpha-link: 0.85;
   --alpha-badge-border: 0.1;
-} 
+}
 
 .product-card-wrapper .card,
 .contains-card--product {
@@ -2388,6 +2388,7 @@ product-info .loading__spinner:not(.hidden) ~ *,
   grid-template-areas: 'left-icons heading icons';
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
+  background-color: red;
 }
 
 @media screen and (max-width: 749px) {
