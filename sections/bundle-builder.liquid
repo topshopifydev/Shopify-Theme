@@ -24,10 +24,10 @@
   <button>Submit</button>
 </form>
 <script>
-  const form = document.getElementById("bundles-form")
+  const form = document.querySelector("#bundles-form")
   form.addEventListener('submit', async (e) => {
-    const group1 = document.getElementById("group-1")
-    const group2 = document.getElementById("group-2")
+    const group1 = document.querySelector("#group-1").value
+    const group2 = document.querySelector("#group-2").value
     const bundleId = new Date().getTime();
     await fetch("/cart/add.js", {
       method: "POST",
