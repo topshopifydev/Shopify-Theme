@@ -1,39 +1,56 @@
-<div class="first-group bundle-producs">
-  <h2>First Group</h2>
-  <div class="group-inner">
-    {% for product in collections.all.products %}
-      {% if product.tags contains 'Group 1' %}
-        {% assign variant = product.selected_or_first_available_variant %}
-        <div class="group-item">
-          <div class="item-image">
-            <img src="{{ variant.image | img_url: '1000x' }}" width="" height="" loading="lazy" alt="">
+<style>
+  img {
+    width: 100%;
+    display: block;
+  }
+  .group-item {
+    width: calc(100% / 4 - 3px);
+  }
+  .group-inner {
+    gap: 12px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+<div class="page-width">
+  <div class="first-group bundle-producs">
+    <h2>First Group</h2>
+    <div class="group-inner">
+      {% for product in collections.all.products %}
+        {% if product.tags contains 'Group 1' %}
+          {% assign variant = product.selected_or_first_available_variant %}
+          <div class="group-item">
+            <div class="item-image">
+              <img src="{{ variant.image | img_url: '1000x' }}" width="" height="" loading="lazy" alt="">
+            </div>
+            <div class="item-info">
+              <h2>{{ variant.title }}</h2>
+              <p>{{ variant.price | money }}</p>
+              <button>ADD</button>
+            </div>
           </div>
-          <div class="item-info">
-            <h2>{{ variant.title }}</h2>
-            <p>{{ variant.price | money }}</p>
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
-</div>
-<div class="second-group bundle-producs">
-  <h2>Second Group</h2>
-  <div class="group-inner">
-    {% for product in collections.all.products %}
-      {% if product.tags contains 'Group 2' %}
-        {% assign variant = product.selected_or_first_available_variant %}
-        <div class="group-item">
-          <div class="item-image">
-            <img src="{{ variant.image | img_url: '1000x' }}" width="" height="" loading="lazy" alt="">
+  <div class="second-group bundle-producs">
+    <h2>Second Group</h2>
+    <div class="group-inner">
+      {% for product in collections.all.products %}
+        {% if product.tags contains 'Group 2' %}
+          {% assign variant = product.selected_or_first_available_variant %}
+          <div class="group-item">
+            <div class="item-image">
+              <img src="{{ variant.image | img_url: '1000x' }}" width="" height="" loading="lazy" alt="">
+            </div>
+            <div class="item-info">
+              <h2>{{ variant.title }}</h2>
+              <p>{{ variant.price | money }}</p>
+            </div>
           </div>
-          <div class="item-info">
-            <h2>{{ variant.title }}</h2>
-            <p>{{ variant.price | money }}</p>
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 </div>
 
