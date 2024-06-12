@@ -28,7 +28,7 @@
       {% for product in collections.all.products %}
         {% if product.tags contains 'Group 1' %}
           {% assign variant = product.selected_or_first_available_variant %}
-          <div class="group-item">
+          <div class="group-item" data-variantid="{{ variant.id }}">
             <div class="item-image">
               <img src="{{ product.featured_image | img_url: '1000x' }}" width="" height="" loading="lazy" alt="">
             </div>
@@ -95,10 +95,7 @@
 
       document.querySelectorAll('.group-item button').forEach(button => {
         button.addEventListener('click', function() {
-          if (this.classList.contains('added')) {
-            this.textContent = 'Added';
-            this.classList.remove('added');
-          } else {
+          if (!this.classList.contains('added')) {
             let newInput = document.createElement('input');
             let variantId = this.closest('.group-item').dataset.variantid;
             newInput.type = 'hidden'; // Make sure the input is hidden
