@@ -24,36 +24,52 @@
   <button>Submit</button>
 </form>
 <script>
-  const form = document.querySelector("#bundles-form")
-  form.addEventListener('submit', async (e) => {
-    const group1 = document.querySelector("#group-1").value
-    const group2 = document.querySelector("#group-2").value
-    const bundleId = new Date().getTime();
-    await fetch("/cart/add.js", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        items: [
-          {
-            id: group1,
-            quantity: 1,
-            properties: {
-              _bundleId: bundleId
-            }
-          },
-          {
-            id: group2,
-            quantity: 1,
-            properties: {
-              _bundleId: bundleId
-            }
+  document.addEventListener('DOMContentLoaded', () => {
+      const form = document.querySelector("#bundles-form");
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent the default form submission
+
+        const group1 = document.querySelector("#group-1").value;
+        const group2 = document.querySelector("#group-2").value;
+        const bundleId = new Date().getTime();
+
+        try {
+          const response = await fetch("/cart/add.js", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              items: [
+                {
+                  id: group1,
+                  quantity: 1,
+                  properties: {
+                    _bundleId: bundleId
+                  }
+                },
+                {
+                  id: group2,
+                  quantity: 1,
+                  properties: {
+                    _bundleId: bundleId
+                  }
+                }
+              ]
+            })
+          });
+
+          if (response.ok) {
+            window.location.href = '/cart'; // Redirect to the cart page
+          } else {
+            console.error('Failed to add items to the cart:', response.statusText);
           }
-        ]
-      })
-    })
-  })
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      });
+    });
 </script>
 {% schema %}
   {
