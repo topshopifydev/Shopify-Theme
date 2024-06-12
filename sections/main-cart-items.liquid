@@ -103,7 +103,11 @@
                       {%- endif -%}
 
                       <a href="{{ item.url }}" class="cart-item__name h4 break">{{ item.product.title | escape }}</a>
-
+                      <ul>
+                        {% for component in item.item_components %}
+                          <li>{{ component.title }}</li>
+                        {% endfor %}
+                      </ul>
                       {%- if item.original_price != item.final_price -%}
                         <div class="cart-item__discounted-prices">
                           <span class="visually-hidden">
