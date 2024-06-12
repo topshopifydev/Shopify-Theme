@@ -48,7 +48,7 @@
       {% for product in collections.all.products %}
         {% if product.tags contains 'Group 2' %}
           {% assign variant = product.selected_or_first_available_variant %}
-          <div class="group-item">
+          <div class="group-item" data-variantid="{{ variant.id }}">
             <div class="item-image">
               <img src="{{ product.featured_image | img_url: '1000x' }}" width="" height="" loading="lazy" alt="">
             </div>
@@ -65,7 +65,8 @@
 </div>
 
 <form id="bundles-form">
-  <div>
+  <div class="item_ids"></div>
+  {% comment %} <div>
     <label for="group-1">Group 1</label>
     <select id="group-1" name="group-1">
     {% for product in collections.all.products %}
@@ -86,20 +87,45 @@
       {% endif %}
     {% endfor %}
     </select>
-  </div>
+  </div> {% endcomment %}
   <button>Submit</button>
 </form>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+   document.addEventListener('DOMContentLoaded', () => {
+
+      document.querySelectorAll('.group-item button').forEach(button => {
+        button.addEventListener('click', function() {
+          if(this.classList.contains('added')) {
+            this.textContent = 'Added'
+          }else {
+            let newInput = document.createElement('input')
+            let variantId = this.closest('.group-item').dataset.variantid
+            newInput.value = variantId;
+            console.log(newInput)
+            document.querySelector('.item_ids').appendChild(newInput)
+            this.textContent = 'Add'
+          }
+        })
+      })
+
+
       const form = document.querySelector("#bundles-form");
-
       form.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Prevent the default form submission
-
-        const group1 = document.querySelector("#group-1").value;
-        const group2 = document.querySelector("#group-2").value;
+        e.preventDefault();
+        const ItemsIds = []
+        form.querySelectorAll('.item_ids input').forEach(input => {
+          ItemsIds.push(input.value)
+        })
         const bundleId = new Date().getTime();
-
+        const items = ItemsIds.map(id => {
+          return {
+            id: id,
+            quantity: 1,
+            properties: {
+              _bundleId: bundleId
+            }
+          };
+        });
         try {
           const response = await fetch("/cart/add.js", {
             method: "POST",
@@ -107,27 +133,12 @@
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              items: [
-                {
-                  id: group1,
-                  quantity: 1,
-                  properties: {
-                    _bundleId: bundleId
-                  }
-                },
-                {
-                  id: group2,
-                  quantity: 1,
-                  properties: {
-                    _bundleId: bundleId
-                  }
-                }
-              ]
+              items: items
             })
           });
 
           if (response.ok) {
-            window.location.href = '/cart'; // Redirect to the cart page
+            window.location.href = '/cart';
           } else {
             console.error('Failed to add items to the cart:', response.statusText);
           }
