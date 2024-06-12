@@ -15,14 +15,14 @@
         "block_fR9RAn": {
           "type": "block",
           "settings": {
-            "Heading": "First Group",
+            "heading": "First Group",
             "collection": "group-1"
           }
         },
         "block_93MjJ9": {
           "type": "block",
           "settings": {
-            "Heading": "Second Group",
+            "heading": "Second Group",
             "collection": "group-2"
           }
         }
