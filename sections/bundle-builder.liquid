@@ -1,4 +1,5 @@
 <style>
+  .bundle-producs 
   .group-item img {
     width: 100%;
     display: block;
@@ -22,27 +23,27 @@
   }
 </style>
 <div class="page-width">
-  <div class="first-group bundle-producs">
-    <h2>First Group</h2>
+  {% for block in section.blocks %}
+  <div class="group--{{ forloop.index }} bundle-producs">
+    <h2>{{ block.settings.heading }}</h2>
     <div class="group-inner">
-      {% for product in collections.all.products %}
-        {% if product.tags contains 'Group 1' %}
-          {% assign variant = product.selected_or_first_available_variant %}
-          <div class="group-item" data-variantid="{{ variant.id }}">
-            <div class="item-image">
-              <img src="{{ product.featured_image | img_url: '1000x' }}" width="" height="" loading="lazy" alt="">
-            </div>
-            <div class="item-info">
-              <h2>{{ product.title }}</h2>
-              <p>{{ variant.price | money }}</p>
-              <button class="button button--secondary">ADD</button>
-            </div>
+      {% for product in collections[block.settings.collection].products %}
+        {% assign variant = product.selected_or_first_available_variant %}
+        <div class="group-item" data-variantid="{{ variant.id }}">
+          <div class="item-image">
+            <img src="{{ product.featured_image | img_url: '1000x' }}" width="" height="" loading="lazy" alt="">
           </div>
-        {% endif %}
+          <div class="item-info">
+            <h2>{{ product.title }}</h2>
+            <p>{{ variant.price | money }}</p>
+            <button class="button button--secondary">ADD</button>
+          </div>
+        </div>
       {% endfor %}
     </div>
   </div>
-  <div class="second-group bundle-producs">
+  {% endfor %}
+  {% comment %} <div class="second-group bundle-producs">
     <h2>Second Group</h2>
     <div class="group-inner">
       {% for product in collections.all.products %}
@@ -61,7 +62,7 @@
         {% endif %}
       {% endfor %}
     </div>
-  </div>
+  </div> {% endcomment %}
 </div>
 
 <form id="bundles-form">
@@ -152,6 +153,24 @@
   {
     "name": "Bundle Builder",
     "settings": [],
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "Heading",
+            "label": "Title"
+          },
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }
+        ]
+      }
+    ],
     "presets": [
       {
         "name": "Bundle Builder"
