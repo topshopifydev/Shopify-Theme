@@ -30,7 +30,28 @@
     const group2 = document.getElementById("group-2")
     const bundleId = new Date().getTime();
     await fetch("/cart/add.js", {
-      method
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        items: [
+          {
+            id: group1,
+            quantity: 1,
+            properties: {
+              bundleId
+            }
+          },
+          {
+            id: group2,
+            quantity: 1,
+            properties: {
+              bundleId
+            }
+          }
+        ]
+      })
     })
   })
 </script>
