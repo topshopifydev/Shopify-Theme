@@ -53,7 +53,7 @@
               <img src="{{ product.featured_image | img_url: '1000x' }}" width="" height="" loading="lazy" alt="">
             </div>
             <div class="item-info">
-              <h2>{{ variant.title }}</h2>
+              <h2>{{ product.title }}</h2>
               <p>{{ variant.price | money }}</p>
               <button class="button button--secondary">ADD</button>
             </div>
@@ -95,19 +95,22 @@
 
       document.querySelectorAll('.group-item button').forEach(button => {
         button.addEventListener('click', function() {
-          if(this.classList.contains('added')) {
-            this.textContent = 'Added'
-          }else {
-            let newInput = document.createElement('input')
-            let variantId = this.closest('.group-item').dataset.variantid
+          if (this.classList.contains('added')) {
+            this.textContent = 'Added';
+            this.classList.remove('added');
+          } else {
+            let newInput = document.createElement('input');
+            let variantId = this.closest('.group-item').dataset.variantid;
+            newInput.type = 'hidden'; // Make sure the input is hidden
+            newInput.name = 'item_ids[]'; // Ensure the input is named correctly
             newInput.value = variantId;
-            console.log(newInput)
-            document.querySelector('.item_ids').appendChild(newInput)
-            this.textContent = 'Add'
+            console.log(newInput);
+            document.querySelector('.item_ids').appendChild(newInput);
+            this.textContent = 'Add';
+            this.classList.add('added');
           }
-        })
-      })
-
+        });
+      });
 
       const form = document.querySelector("#bundles-form");
       form.addEventListener('submit', async (e) => {
