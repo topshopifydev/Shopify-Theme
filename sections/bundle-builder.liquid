@@ -1,15 +1,18 @@
 <style>
-  img {
+  .group-item img {
     width: 100%;
     display: block;
+    object-fit: contain;
+    aspect-ratio: 4 / 4;
   }
   .group-item {
-    width: calc(100% / 4 - 3px);
+    width: calc(100% / 4 - 10px);
   }
   .group-inner {
     gap: 12px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
   .item-info {
     text-align: center;
