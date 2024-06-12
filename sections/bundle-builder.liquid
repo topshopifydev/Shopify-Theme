@@ -15,7 +15,7 @@
     <select id="group-2" name="group-2">
     {% for product in collections.all.products %}
       {% if product.tags contains 'Group 2' %}
-        {% assign variant = product.seleted_or_first_available_varaint %}
+        {% assign variant = product.selected_or_first_available_variant %}
         <option value="{{ variant.id }}">{{ product.title }} -- {{ variant.price | money }}</option>
       {% endif %}
     {% endfor %}
