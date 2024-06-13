@@ -8,6 +8,13 @@
     display: flex;
     justify-content: space-between;
   }
+  .bundle-products[open] .icon.icon-minus {
+    display: block;
+  }
+  .bundle-products .icon.icon-minus,
+  .bundle-products[open] .icon.icon-plus {
+    display: none;
+  }
   .bundle-products {
     margin-bottom: 10px;
   }
