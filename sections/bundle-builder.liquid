@@ -4,6 +4,10 @@
     padding: 15px;
     margin: 0;
   }
+  .bundle-products summary {
+    display: flex;
+    justify-content: space-between;
+  }
   .bundle-products {
     margin-bottom: 10px;
   }
@@ -44,6 +48,8 @@
     <details class="group--{{ forloop.index }} bundle-products" open >
       <summary>
         <h2 class="title">{{ block.settings.heading }}</h2>
+        {% render 'icon-minus' %}
+        {% render 'icon-plus' %}
       </summary>
       <div class="group-inner">
         {% for product in collections[block.settings.collection].products %}
