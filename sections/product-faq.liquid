@@ -4,12 +4,13 @@
     <div class="product-faqs">
       <h2>Frequently Asked Questions</h2>
       <ul>
-        {% for faq in faqs_metafield %}
-          <li class="faq-item">
-            <h3 class="faq-question">{{ faq.question }}</h3>
-            <p class="faq-answer">{{ faq.answer }}</p>
-          </li>
-        {% endfor %}
+        {% for faq_reference in faqs_metafield.value %}
+            {% assign faq_object = shop.metaobjects.product_faqs[faq_reference] %}
+            <li class="faq-item">
+              <h3 class="faq-question">{{ faq_object.fields.faq_question.value }}</h3>
+              <p class="faq-answer">{{ faq_object.fields.answer.value }}</p>
+            </li>
+          {% endfor %}
       </ul>
     </div>
   {% else %}
