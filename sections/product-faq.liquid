@@ -1,14 +1,13 @@
-{% assign faqs_metafield = product.metafields.custom.product_faqs %}
+{% assign faqs_metafield = product.metafields.custom.product_faqs.value %}
 
 {% if faqs_metafield %}
   <div class="product-faqs">
     <h2>Frequently Asked Questions</h2>
     <ul>
-      {% for faq_reference in faqs_metafield.value %}
-        {% assign faq_object = shop.metaobjects.product_faqs[faq_reference] %}
+      {% for faq_reference in faqs_metafield %}
         <li class="faq-item">
-          <h3 class="faq-question">{{ faq_object.fields.question.value }}</h3>
-          <p class="faq-answer">{{ faq_object.fields.answer.value }}</p>
+          <h3 class="faq-question">{{ faq_reference.Faq_question }}</h3>
+          <p class="faq-answer">{{ faq_reference.answer }}</p>
         </li>
       {% endfor %}
     </ul>
