@@ -6,6 +6,7 @@
         <li class="faq-item">
           <h3 class="faq-question">{{ faq.question.value }}</h3>
           <p class="faq-answer">
+            {{ faq.response }}
             {% for text in faq.response %}
               {{ text.value }}
             {% endfor %}
