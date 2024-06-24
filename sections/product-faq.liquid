@@ -5,7 +5,7 @@
       <h2>Frequently Asked Questions</h2>
       <ul>
         {% for faq_reference in faqs_metafield.values %}
-            {% assign faq_object = shop.metaobjects.product_faqs[faq_reference] %}
+            {% assign faq_object = shop.metaobjects.product_faqs %}
             <li class="faq-item" data-test="{{ faq_reference }}">
               <h3 class="faq-question">{{ faq_object.fields.faq_question.value }}</h3>
               <p class="faq-answer">{{ faq_object.fields.answer.value }}</p>
