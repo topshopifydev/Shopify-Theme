@@ -8,7 +8,7 @@
     {%- if product.metafields.custom.product_faqs_qa -%}
     {% assign faqs = product.metafields.custom.product_faqs_qa.value | json %}
     {%- for faq in faqs -%}
-    <div class="faq-item custom--question">
+    <div class="faq-item custom--question" data-afs="{{ faq }}">
       <div>
         <button type="button"
           class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height"
