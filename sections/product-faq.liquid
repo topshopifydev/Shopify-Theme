@@ -1,9 +1,6 @@
-{% assign metaobjects = product.metafields.product_faqs.product_faqs | json_parse %}
+{% assign metaobjects = product.metafields %}
+<h2>{{ metaobjects }}</h2>
 
-{% for item in metaobjects %}
-    
-    <h2>{{ item.answer }}</h2>
-{% endfor %}
 
 
 {% schema %}
