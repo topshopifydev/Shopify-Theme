@@ -1,10 +1,21 @@
-{% assign metaobjects = product.metafields.custom.product_faqs.values %}
-{% for meta in metaobjects %}
-    <h2>{{ meta }}</h2>
-{% endfor %}
+{% assign faqs_metafield = product.metafields.custom.product_faqs %}
 
-
-
+{% if faqs_metafield %}
+    <div class="product-faqs">
+      <h2>Frequently Asked Questions</h2>
+      <ul>
+        {% for faq in faqs_metafield %}
+          <li class="faq-item">
+            <h3 class="faq-question">{{ faq.question }}</h3>
+            <p class="faq-answer">{{ faq.answer }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% else %}
+    <p>No FAQs available for this product.</p>
+  {% endif %}
+  
 {% schema %}
     {
         "presets": [
