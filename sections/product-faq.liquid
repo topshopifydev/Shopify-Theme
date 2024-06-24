@@ -1,4 +1,4 @@
-{% assign metaobjects = product.metafields.product_faqs.values %}
+{% assign metaobjects = product.metafields.custom.product_faqs.values %}
 {% for meta in metaobjects %}
     <h2>{{ meta.metaobject.answer }}</h2>
 {% endfor %}
