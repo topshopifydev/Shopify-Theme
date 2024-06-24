@@ -8,7 +8,7 @@
           <p class="faq-answer">
             {{ faq.response }}
             {% for text in faq.response %}
-              {{ text.value }}
+              {{ text.children.children.value }}
             {% endfor %}
           </p>
         </li>
