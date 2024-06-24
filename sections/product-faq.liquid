@@ -5,7 +5,11 @@
       {% for faq in faqs %}
         <li class="faq-item">
           <h3 class="faq-question">{{ faq.question.value }}</h3>
-          <p class="faq-answer">{{ faq.response.value }}</p>
+          <p class="faq-answer">
+            {% for text in faq.response %}
+              {{ text.value }}
+            {% endfor %}
+          </p>
         </li>
       {% endfor %}
     </ul>
