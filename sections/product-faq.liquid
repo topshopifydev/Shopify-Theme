@@ -6,7 +6,8 @@
       </h2>
     </header>
     {%- if product.metafields.custom.product_faqs_qa -%}
-    {%- for faq in product.metafields.custom.product_faqs_qa.value -%}
+    {% assign faqs = product.metafields.custom.product_faqs_qa.value | json %}
+    {%- for faq in faqs -%}
     <div class="faq-item custom--question">
       <div>
         <button type="button"
@@ -20,7 +21,7 @@
         </button>
         <div id="FAQ-content-{{ forloop.index }}" class="collapsible-content collapsible-content--all">
           <div class="collapsible-content__inner rte">
-            {{ faq.response | escape }}
+            <p>{{ faq.response | escape }}</p>
           </div>
         </div>
       </div>
