@@ -1,22 +1,36 @@
-{% assign faqs_metafield = product.metafields.custom.product_faqs.value %}
-
-{% if faqs_metafield %}
-  <div class="product-faqs">
-    <h2>Frequently Asked Questions</h2>
-    <ul>
-      {% for faq_reference in faqs_metafield %}
-        <li class="faq-item">
-          <h3 class="faq-question">{{ faq_reference.Faq_question }}</h3>
-          <p class="faq-answer">{{ faq_reference.answer }}</p>
-        </li>
-      {% endfor %}
-    </ul>
+<div class="faq-section">
+  <div class="page-width page-width--narrow">
+    <header class="section-header">
+      <h2 class="section-header__title">
+        Faqs
+      </h2>
+    </header>
+    {%- if product.metafields.custom.product_faqs -%}
+    {%- for faq in product.metafields.custom.product_faqs.value -%}
+    <div class="faq-item custom--question">
+      {% if faq.question != blank %}
+      <div>
+        <button type="button"
+          class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height"
+          aria-controls="FAQ-content-{{ forloop.index }}">
+          <span class="collapsible-trigger__layout">
+            <span>
+              <span>{{ faq.question }}</span>
+            </span>
+          </span>
+        </button>
+        <div id="FAQ-content-{{ forloop.index }}" class="collapsible-content collapsible-content--all">
+          <div class="collapsible-content__inner rte">
+            {{ faq.response }}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {%- endfor -%}
+    {%- endif -%}
   </div>
-{% else %}
-  <p>No FAQs available for this product.</p>
-{% endif %}
-
-  
+</div>
 {% schema %}
     {
         "presets": [
