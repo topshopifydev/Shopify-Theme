@@ -1,7 +1,7 @@
 {% assign faqs = product.metafields.custom.product_faqs_qa.value %}
-  <div class="product-faqs">
+  <div class="product-faqs pagw-width">
     <h2>Frequently Asked Questions</h2>
-    <ul>
+    <div class="faqs-inner">
       {% for faq in faqs %}
         <details {% if forloop.first %}open{% endif %}>
           <summary>
@@ -12,7 +12,7 @@
           </div>
         </details>
       {% endfor %}
-    </ul>
+    </div>
   </div>
   
 {% schema %}
