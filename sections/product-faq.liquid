@@ -6,6 +6,7 @@
         <details {% if forloop.first %}open{% endif %}>
           <summary>
             <h3 class="faq-question">{{ faq.question.value }}</h3>
+            {% render 'icon-caret' %}
           </summary>
           <div class="content">
             {{ faq.response | metafield_tag }}
