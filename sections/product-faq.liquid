@@ -6,7 +6,7 @@
         <li class="faq-item">
           <h3 class="faq-question">{{ faq.question.value }}</h3>
           <p class="faq-answer">
-            {{ faq.response.value | metafield_tag }}
+            {{ faq.response | metafield_tag }}
           </p>
         </li>
       {% endfor %}
