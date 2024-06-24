@@ -3,12 +3,14 @@
     <h2>Frequently Asked Questions</h2>
     <ul>
       {% for faq in faqs %}
-        <li class="faq-item">
-          <h3 class="faq-question">{{ faq.question.value }}</h3>
-          <p class="faq-answer">
+        <details {% if forloop.first %}open{% endif %}>
+          <summary>
+            <h3 class="faq-question">{{ faq.question.value }}</h3>
+          </summary>
+          <div class="content">
             {{ faq.response | metafield_tag }}
-          </p>
-        </li>
+          </div>
+        </details>
       {% endfor %}
     </ul>
   </div>
