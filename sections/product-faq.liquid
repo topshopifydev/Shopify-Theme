@@ -5,8 +5,8 @@
         Faqs
       </h2>
     </header>
-    {%- if product.metafields.custom.product_faqs -%}
-    {%- for faq in product.metafields.custom.product_faqs.value -%}
+    {%- if product.metafields.custom.product_faqs_qa -%}
+    {%- for faq in product.metafields.custom.product_faqs_qa.value -%}
     <div class="faq-item custom--question">
       {% if faq.question != blank %}
       <div>
