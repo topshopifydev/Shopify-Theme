@@ -1,5 +1,7 @@
 {% assign metaobjects = product.metafields.product_faqs.values %}
-<h2>{{ metaobjects }}</h2>
+{% for meta in metaobjects %}
+    <h2>{{ meta }}</h2>
+{% endfor %}
 
 
 
