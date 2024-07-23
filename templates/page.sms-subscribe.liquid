@@ -1,0 +1,4 @@
+<!-- Main menu -->
+{% for link in linklists.test-1.links -%}
+  {{ link.title | link_to: link.url }}
+{%- endfor %}
