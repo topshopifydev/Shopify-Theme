@@ -1,4 +1,7 @@
 <!-- Main menu -->
 {% for link in linklists.test-1.links -%}
   {{ link.title | link_to: link.url }}
+  {% assign nextMenu = link.url | split: '#' %}
+  {% assign nextMenu1 = nextMenu[1] %}
+  {{ nextMenu1 }}
 {%- endfor %}
