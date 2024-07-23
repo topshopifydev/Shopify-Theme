@@ -1,11 +1,9 @@
 {%- form 'customer', id: newsletter_form_id, class: 'form' -%}
 {%- if form.posted_successfully? -%}
 {%- assign success_message = 'general.newsletter.subscribed_successfully' | t -%}
-{%- render 'banner', content: success_message, status: 'success' -%}
 {%- else -%}
 {%- if form.errors -%}
 {%- capture error_message -%}{{ form.errors.translated_fields['phone'] }} {{ form.errors.messages['phone'] }}{%- endcapture -%}
-{%- render 'banner', content: error_message, status: 'error' -%}
 {%- endif -%}
 
 <input type="hidden" name="contact[tags]" value="ONECLICKBUY">
