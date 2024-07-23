@@ -4,4 +4,7 @@
   {% assign nextMenu = link.url | split: '#' %}
   {% assign nextMenu1 = nextMenu[1] %}
   {{ nextMenu1 }}
+  {% for childLink in linklists[nextMenu1].links %}
+    {{ childLink.title }}
+  {%- endfor %}
 {%- endfor %}
