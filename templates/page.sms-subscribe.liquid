@@ -11,9 +11,7 @@
 <input type="hidden" name="contact[tags]" value="ONECLICKBUY">
 
 <div class="fieldset-with-submit">
-{%- capture label -%}{{ 'general.newsletter.phone' | t }}{%- endcapture -%}
-{%- render 'input', name: 'contact[phone]', label: label, type: 'tel', required: true, autocomplete: 'tel', enterkeyhint: 'send' -%}
-
+<input type="tel" name="contact[phone]" value="ONECLICKBUY">
 <button type="submit" class="button button--xl" is="custom-button">
     <div>
         <div class="text-with-icon justify-center">
