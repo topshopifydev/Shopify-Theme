@@ -1,6 +1,6 @@
 {%- form 'customer', id: newsletter_form_id, class: 'form' -%}
 {%- if form.posted_successfully? -%}
-{%- assign success_message = 'general.newsletter.subscribed_successfully' | t -%}
+{%- assign success_message = 'subscribed_successfully' -%}
 {%- else -%}
 {%- if form.errors -%}
 {%- capture error_message -%}{{ form.errors.translated_fields['phone'] }} {{ form.errors.messages['phone'] }}{%- endcapture -%}
