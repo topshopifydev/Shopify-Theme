@@ -349,5 +349,41 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <div id="chatbox-container">
+      <div id="chatbox"></div>
+      <input type="text" id="inputField" placeholder="Type your message here">
+      <button id="submitButton">Send</button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const chatbox = document.getElementById('chatbox');
+        const inputField = document.getElementById('inputField');
+        const submitButton = document.getElementById('submitButton');
+        const key = 'asst_t8UJVOjhHxGN7dXzKwkJKP5D'
+      
+        submitButton.addEventListener('click', async function() {
+          const userInput = inputField.value;
+          const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${key}`
+            },
+            body: JSON.stringify({
+              prompt: userInput,
+              max_tokens: 150
+            })
+          });
+          const data = await response.json();
+          chatbox.innerHTML += `<p>${data.choices[0].text}</p>`;
+          inputField.value = '';
+        });
+      });
+
+    </script>
+
+    
   </body>
 </html>
