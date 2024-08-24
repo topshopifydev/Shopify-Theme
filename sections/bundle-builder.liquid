@@ -94,8 +94,9 @@
     await fetch("/cart/add.js", {
       method: "POST",
       headers: {
-        "C"
-      }
+        "Content-Type": "application/json"
+      },
+      body
     })
     console.log(group1, group2)
   })
