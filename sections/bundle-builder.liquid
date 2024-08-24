@@ -92,7 +92,10 @@
     const group2 = document.querySelectorAll('.group--2 .group-item')[0].dataset.variantid
     const bundleId = new Date().getTime();
     await fetch("/cart/add.js", {
-      method: "PO"
+      method: "POST",
+      headers: {
+        "C"
+      }
     })
     console.log(group1, group2)
   })
