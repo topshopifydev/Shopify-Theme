@@ -84,9 +84,10 @@
   <div class="item_ids"></div>
   <button class="button">Add to Cart</button>
 </form>
+<!-- 
+
 <script>
    document.addEventListener('DOMContentLoaded', () => {
-
       document.querySelectorAll('.group-item button').forEach(button => {
         button.addEventListener('click', function() {
           if (!this.classList.contains('added')) {
@@ -116,7 +117,7 @@
             id: id,
             quantity: 1,
             properties: {
-              _bundleId: 'sdf'
+              _bundleId: bundleId
             }
           };
         });
@@ -127,13 +128,7 @@
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              items: {
-                id: ItemsIds[0],
-                quantity: 1,
-                properties: {
-                  _bundleId: 'sdf'
-                }
-              }
+              items: items
             })
           });
 
@@ -148,6 +143,7 @@
       });
     });
 </script>
+-->
 {% schema %}
   {
     "name": "Bundle Builder",
