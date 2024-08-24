@@ -127,7 +127,13 @@
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              items: items
+              items: {
+                id: ItemsIds[0],
+                quantity: 1,
+                properties: {
+                  _bundleId: 'sdf'
+                }
+              }
             })
           });
 
