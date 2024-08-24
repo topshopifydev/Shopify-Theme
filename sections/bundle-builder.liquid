@@ -99,7 +99,11 @@
       body: JSON.stringify({
         items: [
           {
-            
+            id: id,
+            quantity: 1,
+            properties: {
+              _bundleId: bundleId
+            }
           }
         ]
       })
