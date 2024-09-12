@@ -123,7 +123,7 @@
     "currency_code_enabled": false,
     "cart_type": "drawer",
     "show_vendor": false,
-    "show_cart_note": false,
+    "show_cart_note": true,
     "cart_drawer_collection": "zero-prized",
     "cart_color_scheme": "scheme-1",
     "sections": {
