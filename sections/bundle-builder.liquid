@@ -90,6 +90,8 @@
     const group1 = document.querySelectorAll('.group--1 .group-item')[0].dataset.variantid
     const group2 = document.querySelectorAll('.group--2 .group-item')[0].dataset.variantid
     const bundleId = new Date().getTime();
+    console.log(group1, group2)
+    
     await fetch("/cart/add.js", {
       method: "POST",
       headers: {
@@ -114,7 +116,6 @@
         ]
       })
     })
-    console.log(group1, group2)
   })
 </script>
 {% comment %} 
