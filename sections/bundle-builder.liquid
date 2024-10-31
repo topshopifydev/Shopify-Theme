@@ -84,7 +84,7 @@
   <div class="item_ids"></div>
   <button class="button">Add to Cart</button>
 </form>
-<script>
+<!-- <script>
   let form = document.querySelector('#bundles-form');
   form.addEventListener('submit', async (e) => {
     e.preventDefault()
@@ -117,8 +117,7 @@
     })
     console.log(group1, group2)
   })
-</script>
-{% comment %} 
+</script> -->
   <script>
      document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.group-item button').forEach(button => {
@@ -176,8 +175,6 @@
         });
       });
   </script>
-{% endcomment %}
-
 {% schema %}
   {
     "name": "Bundle Builder",
