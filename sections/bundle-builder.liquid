@@ -84,10 +84,9 @@
   <div class="item_ids"></div>
   <button class="button">Add to Cart</button>
 </form>
-<!-- <script>
+<script>
   let form = document.querySelector('#bundles-form');
   form.addEventListener('submit', async (e) => {
-    e.preventDefault()
     const group1 = document.querySelectorAll('.group--1 .group-item')[0].dataset.variantid
     const group2 = document.querySelectorAll('.group--2 .group-item')[0].dataset.variantid
     const bundleId = new Date().getTime();
@@ -117,7 +116,8 @@
     })
     console.log(group1, group2)
   })
-</script> -->
+</script>
+{% comment %} 
   <script>
      document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.group-item button').forEach(button => {
@@ -175,6 +175,7 @@
         });
       });
   </script>
+{% endcomment %}
 {% schema %}
   {
     "name": "Bundle Builder",
